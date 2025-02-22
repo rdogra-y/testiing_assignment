@@ -1,5 +1,5 @@
 # Node modules and caches
-node_modules/[poiuyaw]
+node_modules/
 .cache/
 dist/
 
