@@ -1,14 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-
-interface ButtonProps {
-  label?: string;
-  disabled?: boolean;
-  onClick?: () => void;
-}
+import { ButtonProps } from "./Button.types"; // ✅ Import from Button.types
 
 const StyledButton = styled.button<ButtonProps>`
-  display: inline-block;
   background-color: blue;
   color: white;
   padding: 10px 20px;
@@ -23,12 +17,18 @@ const StyledButton = styled.button<ButtonProps>`
   }
 `;
 
-const Button: React.FC<ButtonProps> = ({ label, disabled, onClick }) => {
+const Button: React.FC<ButtonProps> = ({
+  label,
+  children,
+  disabled,
+  onClick,
+}) => {
   return (
     <StyledButton disabled={disabled} onClick={onClick}>
-      {label || "Button"}
+      {children || label}
     </StyledButton>
   );
 };
 
 export default Button;
+export type { ButtonProps }; // ✅ Explicitly export ButtonProps

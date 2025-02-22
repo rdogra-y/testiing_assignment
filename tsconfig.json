@@ -1,12 +1,14 @@
 {
+  //// The JavaScript version the code will be compiled to.
   "compilerOptions": {
-    "target": "ES6",
-    "module": "ESNext",
-    "jsx": "react-jsx",
-    "strict": true,
-    "moduleResolution": "node",
-    "baseUrl": "./src",
-    "outDir": "./dist",
+    "target": "ES6", //ES6 (or ES2015) ensures modern JavaScript features are available in the output.
+    // The module system to use in the output.
+    "module": "ESNext", // ESNext modules support the latest ECMAScript module standards
+    "jsx": "react-jsx", //  Enables the new JSX transform introduced in React 17+
+    "strict": true, // This activates a wide range of type-checking behaviors that improve code quality.
+    "moduleResolution": "node", // This tells TypeScript to use Node.js-style module resolution.
+    "baseUrl": "./src", // Helps TypeScript understand module paths relative to the src directory.
+    "outDir": "./dist", // All compiled JavaScript files will be stored in the dist folder.
     "esModuleInterop": true,
     "skipLibCheck": true
   },

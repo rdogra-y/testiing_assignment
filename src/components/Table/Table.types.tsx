@@ -1,8 +1,11 @@
+// Table.types.tsx
 export interface TableProps {
   /** Child elements inside the table */
   children: React.ReactNode;
   /** Whether to show table border */
   border?: boolean;
+  /** When true, applies disabled styling (e.g., greyscale and non-interactive) */
+  disabled?: boolean;
 }
 
 export interface TableHeaderProps {

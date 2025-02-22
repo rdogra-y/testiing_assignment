@@ -23,7 +23,7 @@ const root = createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    <Button label="Click Me">Click Me</Button>
+    <Button label="Click Me"></Button>
     <Card
       title="Sample Card"
       description="This is a sample card"

@@ -1,3 +1,4 @@
+// Table.test.tsx
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import Table from "./Table";
@@ -59,5 +60,27 @@ describe("Table Component", () => {
     );
     const tableElement = screen.getByRole("table");
     expect(tableElement).toHaveStyle("border: 1px solid #ddd");
+  });
+
+  test("applies disabled styles when disabled", () => {
+    render(
+      <Table disabled={true}>
+        <TableHeader>
+          <TableRow>
+            <TableCell header>ID</TableCell>
+            <TableCell header>Name</TableCell>
+          </TableRow>
+        </TableHeader>
+        <tbody>
+          <TableRow>
+            <TableCell>1</TableCell>
+            <TableCell>Alice</TableCell>
+          </TableRow>
+        </tbody>
+      </Table>
+    );
+    const tableElement = screen.getByRole("table");
+    expect(tableElement).toHaveStyle("opacity: 0.6");
+    expect(tableElement).toHaveStyle("pointer-events: none");
   });
 });

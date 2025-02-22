@@ -1,6 +1,7 @@
 import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import Button from "./Button";
+import type { ButtonProps } from "./Button.types"; // ✅ Import ButtonProps explicitly
 
 export default {
   title: "Components/Button",
@@ -8,22 +9,20 @@ export default {
   argTypes: {
     label: { control: "text" },
     disabled: { control: "boolean" },
-    onClick: { action: "clicked" }, // ✅ Ensures it logs in Storybook
+    onClick: { action: "clicked" },
   },
 } as Meta<typeof Button>;
 
-const Template: StoryFn<typeof Button> = (args) => <Button {...args} />;
+const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
 
-export const Primary = Template.bind({});
+export const Primary: StoryFn<ButtonProps> = Template.bind({});
 Primary.args = {
   label: "Click Me",
   disabled: false,
-  onClick: () => alert("Button Clicked!"), // ✅ Add an alert to confirm clicks
 };
 
-export const Disabled = Template.bind({});
+export const Disabled: StoryFn<ButtonProps> = Template.bind({});
 Disabled.args = {
   label: "Disabled",
   disabled: true,
-  onClick: () => alert("You shouldn't be able to click this!"),
 };

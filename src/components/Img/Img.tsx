@@ -1,30 +1,43 @@
 import React from "react";
 import styled from "styled-components";
+import type { ImgProps } from "./Img.types";
 
-export interface ImgProps {
-  src: string;
-  alt: string;
+// We use a transient prop "$disabled" so that it is not forwarded to the DOM.
+const StyledImg = styled.img<{
   width?: string;
   height?: string;
-  borderRadius?: string;
-}
-
-// Use Pick<> to exclude 'borderRadius' from being passed to the DOM element
-const StyledImg = styled.img<Omit<ImgProps, "borderRadius">>`
+  $disabled?: boolean;
+}>`
   width: ${(props) => props.width || "auto"};
   height: ${(props) => props.height || "auto"};
-  border-radius: ${(props) =>
-    props.theme?.borderRadius || "0"}; /* Use Theme or Default */
+  border-radius: ${(props) => props.theme?.borderRadius || "0"};
+
+  /* If disabled, apply greyed-out styles */
+  ${(props) =>
+    props.$disabled &&
+    `
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  `}
 `;
 
-const Img: React.FC<ImgProps> = ({ src, alt, width, height, borderRadius }) => {
+const Img: React.FC<ImgProps> = ({
+  src,
+  alt,
+  width,
+  height,
+  borderRadius,
+  disabled,
+}) => {
   return (
     <StyledImg
       src={src}
       alt={alt}
       width={width}
       height={height}
-      style={{ borderRadius }} // Pass as style instead of a prop
+      style={{ borderRadius }} // Pass borderRadius as inline style
+      $disabled={disabled} // Pass our transient disabled prop
     />
   );
 };

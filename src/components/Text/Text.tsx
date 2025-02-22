@@ -1,18 +1,22 @@
+// Text.tsx
 import React from "react";
 import styled from "styled-components";
+import type { TextProps } from "./Text.types";
 
-export interface TextProps {
-  children: string; // Change 'content' to 'children'
-  color?: string;
-}
-
-const StyledText = styled.p<TextProps>`
-  font-size: 14px;
-  color: ${({ color }) => color || "#333"}; // Default color
+// Styled component for the text, with conditional styling for disabled state.
+const StyledText = styled.p<{ $color?: string; $disabled?: boolean }>`
+  font-size: 1rem; /* 14-16px equivalent */
+  color: ${({ $color, $disabled }) => ($disabled ? "#999" : $color || "#333")};
+  opacity: ${({ $disabled }) => ($disabled ? "0.6" : "1")};
+  user-select: ${({ $disabled }) => ($disabled ? "none" : "auto")};
 `;
 
-const Text: React.FC<TextProps> = ({ children, color }) => {
-  return <StyledText color={color}>{children}</StyledText>; // Pass text as children
+const Text: React.FC<TextProps> = ({ children, color, disabled }) => {
+  return (
+    <StyledText $color={color} $disabled={disabled}>
+      {children}
+    </StyledText>
+  );
 };
 
 export default Text;

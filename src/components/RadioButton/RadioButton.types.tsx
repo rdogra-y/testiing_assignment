@@ -1,3 +1,7 @@
+// RadioButton.types.tsx
+/**
+ * RadioButtonProps defines the properties for the RadioButton component.
+ */
 export interface RadioButtonProps {
   /** Label text associated with the radio button */
   label: string;

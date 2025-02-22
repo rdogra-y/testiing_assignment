@@ -7,6 +7,8 @@ export interface CardProps {
   imageSrc: string;
   /** Optional click event handler for the card */
   onClick?: () => void;
-  /** Additional styles for the card */
-  className?: string;
+  /** Whether the card is disabled */
+  disabled?: boolean;
+  /** Optional background color for the card */
+  backgroundColor?: string;
 }

@@ -1,27 +1,22 @@
+// RadioButton.tsx
 import React from "react";
 import styled from "styled-components";
+import type { RadioButtonProps } from "./RadioButton.types";
 
-export interface RadioButtonProps {
-  label: string;
-  name: string;
-  value: string;
-  checked: boolean;
-  onChange: (value: string) => void;
-  disabled?: boolean;
-}
-
-// Styled component for RadioButton
-const StyledLabel = styled.label`
+// StyledLabel accepts a disabled prop to conditionally style the label.
+const StyledLabel = styled.label<{ disabled?: boolean }>`
   display: flex;
   align-items: center;
-  cursor: pointer;
-  font-size: 16px;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  font-size: 1rem;
   user-select: none;
+  color: ${({ disabled }) => (disabled ? "#999" : "#000")};
 `;
 
+// StyledInput for the radio button itself.
 const StyledInput = styled.input`
   margin-right: 10px;
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 `;
 
 const RadioButton: React.FC<RadioButtonProps> = ({
@@ -32,14 +27,21 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   onChange,
   disabled,
 }) => {
+  // Only trigger onChange if the radio button is not disabled.
+  const handleChange = () => {
+    if (!disabled) {
+      onChange(value);
+    }
+  };
+
   return (
-    <StyledLabel>
+    <StyledLabel disabled={disabled}>
       <StyledInput
         type="radio"
         name={name}
         value={value}
         checked={checked}
-        onChange={() => onChange(value)}
+        onChange={handleChange}
         disabled={disabled}
       />
       {label}
