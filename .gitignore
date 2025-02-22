@@ -1,0 +1,11 @@
+# Node modules and caches
+node_modules/[poiuyaw]
+.cache/
+dist/
+
+# Build output54
+QW
+public/
+
+# Other generated files
+*.log
