@@ -48,10 +48,17 @@ npm install react react-dom typescript @types/react @types/react-dom --save-dev
 
 ```
 
+### install styled-components and its TypeScript definitions.
+
+````sh
+npm install styled-components
+npm install --save-dev @types/styled-components
+```
+
 ```sh
 Install Storybook
 
-```
+````
 
 ### Set Up Project Structure
 
@@ -110,7 +117,31 @@ npm run storybook
 ### Add a Simple Test
 
 ```sh
-npm install --save-dev @testing-library/react jest @types/jest
+npm install --save-dev @testing-library/react @testing-library/jest-dom jest
+
+```
+
+### Install Babel and Presets
+
+```sh
+npm install --save-dev babel-jest @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript
+
+```
+
+### This will install:
+
+➡️ babel-jest → Allows Jest to use Babel.
+➡️ @babel/core → Babel compiler.
+➡️ @babel/preset-env → Enables modern JavaScript features.
+➡️ @babel/preset-react → Transforms JSX.
+➡️ @babel/preset-typescript → Transforms TypeScript.
+
+### Create a Jest Babel Configuration
+
+```babelrc
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"]
+}
 
 ```
 
