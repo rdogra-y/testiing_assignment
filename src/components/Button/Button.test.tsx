@@ -31,7 +31,7 @@ describe("Button Component", () => {
     const button = screen.getByText("Disabled Button");
     fireEvent.click(button);
 
-    expect(mockClick).not.toHaveBeenCalled(); // ✅ Ensures disabled button does nothing
+    expect(mockClick).not.toHaveBeenCalled();
   });
 
   test("button has the correct styles when disabled", () => {

@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react(), dts()],
   build: {
     lib: {
-      entry: "src/index.ts", // 👈 Set entry point for component library
+      entry: "src/index.ts", // Set entry point for component library
       name: "ReactComponentLibrary",
       fileName: (format) => `react-component-library.${format}.js`,
     },

@@ -20,6 +20,14 @@ const StyledImg = styled.img<{
     cursor: not-allowed;
     pointer-events: none;
   `}
+
+  /* Responsive Scaling */
+  @media (max-width: 768px) {
+    max-width: 80%;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 60%;
 `;
 
 const Img: React.FC<ImgProps> = ({

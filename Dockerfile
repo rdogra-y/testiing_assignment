@@ -1,29 +1,28 @@
 # Use Node.js as the base image
 FROM node:18-alpine
 
-# Set the working directory to match assignment requirements
+# Set the working directory (matching assignment requirement)
 WORKDIR /zumrut_busra_ui_garden
 
-# Copy package.json and package-lock.json
+# Copy package.json and package-lock.json first (for caching dependencies)
 COPY package.json package-lock.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy all project files into the container
+# Copy all project files
 COPY . .
 
-# Build the project
-RUN npm run build
+# Build Storybook instead of the React app
+RUN npm run build-storybook
 
-# Install `serve` globally to serve the production build
-RUN npm install -g serve
+# Install `http-server` globally to serve Storybook
+RUN npm install -g http-server
 
 # Expose port 8083 for the container
 EXPOSE 8083
 
-# Copy the index.html file to the dist folder
-COPY public/index.html dist/index.html
+# Start the server to serve Storybook
+CMD ["npx", "http-server", "storybook-static", "-p", "8083", "--cors", "--no-cache", "--log-ip"]
 
-# Start the server using `serve`
-CMD ["serve", "-s", "dist", "-l", "8083"]
+

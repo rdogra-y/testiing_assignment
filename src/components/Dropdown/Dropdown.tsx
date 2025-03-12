@@ -16,6 +16,18 @@ const StyledSelect = styled.select<{ disabled?: boolean }>`
   border-radius: 5px;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   background-color: ${({ disabled }) => (disabled ? "#e0e0e0" : "white")};
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    font-size: 14px;
+    max-width: 300px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    max-width: 250px;
+    padding: 10px;
+  }
 `;
 
 const Dropdown: React.FC<DropdownProps> = ({

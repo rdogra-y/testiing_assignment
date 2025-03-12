@@ -8,6 +8,14 @@ const StyledLabel = styled.label<{ disabled?: boolean }>`
   font-weight: bold;
   color: ${({ disabled }) => (disabled ? "#999" : "#000")};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "default")};
+
+  /* Responsive Text Size */
+  @media (max-width: 768px) {
+    font-size: 0.875rem; /* 14px */
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.75rem; /* 12px */
 `;
 
 const Label: React.FC<LabelProps> = ({ text, htmlFor, disabled }) => {

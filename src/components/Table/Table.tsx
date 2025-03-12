@@ -15,6 +15,13 @@ const StyledTable = styled.table<{ $border: boolean; $disabled?: boolean }>`
       opacity: 0.6;
       pointer-events: none;
       user-select: none;
+
+       @media (max-width: 768px) {
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.75rem;
     `}
 `;
 

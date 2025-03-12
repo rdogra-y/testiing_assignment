@@ -8,7 +8,7 @@ const CardContainer = styled.div<{
   backgroundColor?: string;
 }>`
   width: 100%;
-  max-width: 300px;
+  max-width: 350px;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
@@ -28,6 +28,22 @@ const CardContainer = styled.div<{
   &:hover {
     transform: scale(1.05);
   }
+
+  /* Responsive Card */
+  @media (max-width: 768px) {
+    max-width: 90%;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 100%;
+  }
+
+  /* Disable hover scaling on mobile */
+  @media (max-width: 768px) {
+    &:hover {
+      transform: none;
+    }
+  }
 `;
 
 const CardImage = styled.img`
@@ -35,6 +51,10 @@ const CardImage = styled.img`
   height: auto;
   max-height: 180px;
   object-fit: cover;
+
+  @media (max-width: 480px) {
+    max-height: 140px;
+  }
 `;
 
 const CardContent = styled.div`
@@ -44,11 +64,18 @@ const CardContent = styled.div`
 const CardTitle = styled.h3`
   font-size: 1.125rem; /* 18px */
   margin: 0;
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+  }
 `;
 
 const CardDescription = styled.p`
   font-size: 0.875rem; /* 14px */
   color: #666;
+
+   @media (max-width: 480px) {
+    font-size: 0.75rem;
 `;
 
 const Card: React.FC<CardProps> = ({

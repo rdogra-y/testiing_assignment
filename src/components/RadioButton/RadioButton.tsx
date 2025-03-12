@@ -11,6 +11,14 @@ const StyledLabel = styled.label<{ disabled?: boolean }>`
   font-size: 1rem;
   user-select: none;
   color: ${({ disabled }) => (disabled ? "#999" : "#000")};
+
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+  }
 `;
 
 // StyledInput for the radio button itself.

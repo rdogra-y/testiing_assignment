@@ -31,6 +31,29 @@ const StyledHeroImage = styled.div<{
       filter: grayscale(100%);
       cursor: not-allowed;
     `}
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    height: ${({ height }) => height || "250px"};
+    font-size: 1.5rem;
+    background-position: center top;
+  }
+
+  @media (max-width: 480px) {
+    height: ${({ height }) => height || "180px"};
+    font-size: 1.2rem;
+  }
+
+  /* Dark Overlay for Better Readability */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
 `;
 
 // The HeroImage component renders the styled container and an optional overlay text.
