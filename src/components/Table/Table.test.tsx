@@ -29,7 +29,7 @@ describe("Table Component", () => {
             <TableCell>Total</TableCell>
           </TableRow>
         </TableFooter>
-      </Table>
+      </Table>,
     );
     expect(screen.getByText("ID")).toBeInTheDocument();
     expect(screen.getByText("Alice")).toBeInTheDocument();
@@ -56,7 +56,7 @@ describe("Table Component", () => {
             <TableCell>Total</TableCell>
           </TableRow>
         </TableFooter>
-      </Table>
+      </Table>,
     );
     const tableElement = screen.getByRole("table");
     expect(tableElement).toHaveStyle("border: 1px solid #ddd");
@@ -77,7 +77,7 @@ describe("Table Component", () => {
             <TableCell>Alice</TableCell>
           </TableRow>
         </tbody>
-      </Table>
+      </Table>,
     );
     const tableElement = screen.getByRole("table");
     expect(tableElement).toHaveStyle("opacity: 0.6");

@@ -1,10 +1,10 @@
-import { StoryObj } from '@storybook/react';
+import { StoryObj } from "@storybook/react";
 declare const meta: {
-    title: string;
-    component: import('../../node_modules/react').FC<{}>;
-    parameters: {
-        layout: string;
-    };
+  title: string;
+  component: import("../../node_modules/react").FC<{}>;
+  parameters: {
+    layout: string;
+  };
 };
 export default meta;
 type Story = StoryObj<typeof meta>;

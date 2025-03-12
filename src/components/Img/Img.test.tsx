@@ -9,13 +9,13 @@ describe("Img Component", () => {
       <Img
         src="https://images.unsplash.com/photo-1739826009158-edbd53ec9979?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
         alt="Placeholder"
-      />
+      />,
     );
     const imgElement = screen.getByAltText("Placeholder");
     expect(imgElement).toBeInTheDocument();
     expect(imgElement).toHaveAttribute(
       "src",
-      "https://images.unsplash.com/photo-1739826009158-edbd53ec9979?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
+      "https://images.unsplash.com/photo-1739826009158-edbd53ec9979?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8",
     );
   });
 
@@ -27,7 +27,7 @@ describe("Img Component", () => {
         width="200px"
         height="100px"
         borderRadius="15px"
-      />
+      />,
     );
     const imgElement = screen.getByAltText("Placeholder");
     expect(imgElement).toHaveStyle("width: 200px");
@@ -41,7 +41,7 @@ describe("Img Component", () => {
         src="https://images.unsplash.com/photo-1739826009158-edbd53ec9979?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1fHx8ZW58MHx8fHx8"
         alt="Placeholder"
         disabled={true}
-      />
+      />,
     );
     const imgElement = screen.getByAltText("Placeholder");
     expect(imgElement).toHaveStyle("opacity: 0.5");

@@ -67,5 +67,5 @@ root.render(
       </TableFooter>
     </Table>
     <Text color="blue">Sample Text Component</Text>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

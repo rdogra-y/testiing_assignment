@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { default as Text } from './Text';
-import { TextProps } from './Text.types';
+import { Meta, StoryObj } from "@storybook/react";
+import { default as Text } from "./Text";
+import { TextProps } from "./Text.types";
 declare const meta: Meta<typeof Text>;
 export default meta;
 type Story = StoryObj<TextProps>;

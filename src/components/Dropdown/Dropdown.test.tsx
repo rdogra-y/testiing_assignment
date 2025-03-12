@@ -26,7 +26,7 @@ describe("Dropdown Component", () => {
 
   test("is disabled when disabled prop is true", () => {
     render(
-      <Dropdown options={options} value="1" onChange={() => {}} disabled />
+      <Dropdown options={options} value="1" onChange={() => {}} disabled />,
     );
     expect(screen.getByRole("combobox")).toBeDisabled();
   });

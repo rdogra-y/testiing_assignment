@@ -13,7 +13,7 @@ describe("RadioButton Component", () => {
         value="option1"
         checked={false}
         onChange={() => {}}
-      />
+      />,
     );
     expect(screen.getByLabelText("Option 1")).toBeInTheDocument();
   });
@@ -27,7 +27,7 @@ describe("RadioButton Component", () => {
         value="option1"
         checked={false}
         onChange={handleChange}
-      />
+      />,
     );
     const radio = screen.getByLabelText("Option 1");
     fireEvent.click(radio);
@@ -44,7 +44,7 @@ describe("RadioButton Component", () => {
         checked={false}
         onChange={handleChange}
         disabled
-      />
+      />,
     );
     const radio = screen.getByLabelText("Option 1");
     fireEvent.click(radio);
@@ -60,7 +60,7 @@ describe("RadioButton Component", () => {
         checked={false}
         onChange={() => {}}
         disabled
-      />
+      />,
     );
     const labelElement = screen.getByText("Option 1");
     expect(labelElement).toHaveStyle("color: #999");

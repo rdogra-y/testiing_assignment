@@ -15,12 +15,12 @@ describe("Label Component", () => {
       <>
         <Label text="Username" htmlFor="username-input" />
         <input id="username-input" />
-      </>
+      </>,
     );
     // Note: In HTML, the attribute is "for" even though in React it's "htmlFor"
     expect(screen.getByText("Username")).toHaveAttribute(
       "for",
-      "username-input"
+      "username-input",
     );
   });
 
