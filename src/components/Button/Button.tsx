@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { ButtonProps } from "./Button.types";
 
+const unusedVar = "I should be removed";
+
 const StyledButton = styled.button<ButtonProps>`
   background-color: blue;
   color: white;
   padding: 12px 24px;
   font-size: 16px;
-
   border: none;
   cursor: pointer;
   border-radius: 5px;
