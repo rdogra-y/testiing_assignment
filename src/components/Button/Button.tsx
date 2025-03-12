@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { ButtonProps } from "./Button.types";
 
-const unusedVar = "I should be removed";
-
 const StyledButton = styled.button<ButtonProps>`
   background-color: blue;
   color: white;

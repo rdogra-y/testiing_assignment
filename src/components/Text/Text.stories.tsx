@@ -1,5 +1,5 @@
 // Text.stories.tsx
-import React from "react";
+
 import { Meta, StoryObj } from "@storybook/react";
 import Text from "./Text";
 import type { TextProps } from "./Text.types";
