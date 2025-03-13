@@ -1,326 +1,157 @@
-# React Component Library
+# UI Component Library - Assignment 13
 
-## Assignment 12 - Web Component Library
+This project is part of **Assignment 13** for the **UI Component Library** course. The goal of this assignment is to enhance an existing **React Component Library** by integrating **Husky pre-commit hooks**, **ESLint**, **Prettier**, **Jest tests**, **Docker**, and **GitHub Actions** for a **CI/CD pipeline**.
 
-This project is a **React Component Library** built using:
+## Tools & Technologies Used
 
-- **React & TypeScript** for reusable UI components
-- **Storybook** for visual testing
-- **Jest & React Testing Library** for unit tests
-- **Styled Components** for styling
-- **Docker** for deployment
-
-This document explains how to **set up, build, test, and deploy** the project.
-
----
-
-## Installation & Setup
-
-### Prerequisites
-
-Make sure you have the following installed:
-
-- **Node.js (18.x or later)**
-- **npm (or yarn)**
-- **Docker Desktop**
-- **Git**
-
-### Initialize Your Project
-
-```sh
-
-mkdir react-component-library
-cd react-component-library
-
-```
-
-### Initialize npm
-
-```sh
-npm init -y
-
-```
-
-### Install React and TypeScript
-
-```sh
-npm install react react-dom typescript @types/react @types/react-dom --save-dev
-
-```
-
-### install styled-components and its TypeScript definitions.
-
-````sh
-npm install styled-components
-npm install --save-dev @types/styled-components
-```
-
-```sh
-Install Storybook
-
-````
-
-### Set Up Project Structure
-
-```bash
-react-component-library/
-│── src/
-│   ├── components/
-│   │   ├── Button/
-│   │   │   ├── Button.tsx
-│   │   │   ├── Button.stories.tsx
-│   │   │   ├── Button.test.tsx
-│   │   │   ├── Button.types.tsx
-│   │   │   ├── index.ts
-│   │   ├── Img/
-│   │   │   ├── Img.tsx
-│   │   │   ├── Img.stories.tsx
-│   │   │   ├── Img.test.tsx
-│   │   │   ├── Img.types.tsx
-│   │   │   ├── index.ts
-│   ├── index.ts
-│
-│── public/
-│   ├── index.html
-│
-│── dist/
-│   ├── (Built files)
-│
-│── Dockerfile
-│── package.json
-│── tsconfig.json
-│── vite.config.ts
-│── README.md
-```
+- **React** - JavaScript library for UI development.
+- **Storybook** - A tool for developing and testing UI components in isolation.
+- **TypeScript** - A statically typed JavaScript superset.
+- **ESLint** - Linting tool to maintain code quality.
+- **Prettier** - Code formatter for consistent styling.
+- **Jest & Testing Library** - Testing framework for unit testing React components.
+- **Husky** - Git hooks manager to enforce pre-commit rules.
+- **Docker** - Used to containerize the project.
+- **GitHub Actions** - Automated CI/CD pipeline to ensure code quality in every commit.
 
 ---
 
-## Component Development
+## Steps to Set Up the Project
 
-Each component consists of:
-
-- `Component.tsx`: The **React component**.
-- `Component.stories.tsx`: **Storybook file** for UI testing.
-- `Component.test.tsx`: **Jest test file** for unit testing.
-- `Component.types.tsx`: **TypeScript types** for prop validation.
-- `index.ts`: **Exports** for easy imports.
-
----
-
-### Run Storybook
+### Clone the Repository & Install Dependencies
 
 ```sh
-npm run storybook
+git clone https://github.com/bgiranzumrut/UI-Component-Library_Assignment-13.git
+cd UI-Component-Library_Assignment-13
+npm install
+```
+
+### Add Husky for Pre-commit Hooks
+
+```sh
+npm install husky --save-dev
+npx husky install
+npx husky add .husky/pre-commit "prettier --write . && eslint . --fix && npm test"
+```
+
+### Configure ESLint & Prettier
+
+```sh
+npx eslint --init
 
 ```
 
-### Add a Simple Test
+### Edit package.json to include:
 
-```sh
-npm install --save-dev @testing-library/react @testing-library/jest-dom jest
-
-```
-
-### Install Babel and Presets
-
-```sh
-npm install --save-dev babel-jest @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript
-
-```
-
-### This will install:
-
-➡️ babel-jest → Allows Jest to use Babel.
-➡️ @babel/core → Babel compiler.
-➡️ @babel/preset-env → Enables modern JavaScript features.
-➡️ @babel/preset-react → Transforms JSX.
-➡️ @babel/preset-typescript → Transforms TypeScript.
-
-### Create a Jest Babel Configuration
-
-```babelrc
-{
-  "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"]
+```json
+"scripts": {
+  "lint": "eslint src/",
+  "format:check": "prettier --check ."
+},
+"husky": {
+  "hooks": {
+    "pre-commit": "prettier --write . && eslint . --fix && npm test"
+  }
 }
 
 ```
 
-### Run the test
+### Run ESLint & Fix Issues
+
+```sh
+npx eslint src/ --fix
+
+```
+
+### To test the component library:
 
 ```sh
 npm test
 
 ```
 
-### Add TypeScript Configuration
-
-```sh
-npx tsc --init
-
-```
-
-### Modify tsconfig.json to support React:
-
-```json
-{
-  "compilerOptions": {
-    "target": "ES6",
-    "module": "ESNext",
-    "jsx": "react-jsx",
-    "strict": true,
-    "moduleResolution": "node",
-    "baseUrl": "./src",
-    "outDir": "./dist",
-    "esModuleInterop": true,
-    "skipLibCheck": true
-  }
-}
-```
-
-### Create Dockerfile
+### Edit the Dockerfile
 
 ```dockerfile
-# Use official Node.js image
-FROM node:16
+# Use Node.js as the base image
+FROM node:18-alpine
 
-# Set working directory
-WORKDIR /lastName_firstName_ui_garden
+# Set the working directory
+WORKDIR /zumrut_busra_ui_garden_build_checks
 
-# Copy package.json and install dependencies
-COPY package.json .
-COPY package-lock.json .
+# Copy package.json and package-lock.json
+COPY package.json package-lock.json ./
+
+# Install dependencies
 RUN npm install
 
-# Copy the rest of the project files
+# Copy project files
 COPY . .
 
-# Build the project
-RUN npm run build
+# Build Storybook instead of the React app
+RUN npm run build-storybook
 
-# Expose port
-EXPOSE 8083
+# Install `http-server` to serve Storybook
+RUN npm install -g http-server
 
-# Start the application
-CMD ["npx", "serve", "-s", "build", "-l", "8083"]
+# Expose port 8018
+EXPOSE 8018
+
+# Start Storybook server
+CMD ["npx", "http-server", "storybook-static", "-p", "8018", "--cors", "--no-cache", "--log-ip"]
 ```
 
-### Install dependencies:
+### Build & Run the Docker Container - Storybook loads at http://localhost:8018
 
 ```sh
-npm install
+docker build -t zumrut_busra_coding_assignment13 .
+docker run -d -p 8018:8018 --name zumrut_busra_coding_assignment13 zumrut_busra_coding_assignment13
 
 ```
 
-### Build the Project
+## Setting Up GitHub Actions for CI/CD
+
+### Create .github/workflows/ci.yml
+
+```yaml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run Tests
+        run: npm test
+```
+
+### Commit & Push to Trigger CI/CD
 
 ```sh
-npm run build
+git add .
+git commit -m "Add GitHub Actions workflow"
+git push origin main
+
 ```
-
-> **Purpose:** Generates production-ready **dist/** files.
-
-## Docker Setup & Deployment
-
-### Build the Docker Image
-
-```sh
-docker build -t zumrut_busra_coding_assignment12 .
-```
-
-### Run the Docker Container
-
-```sh
-docker run -p 8083:8083 --name zumrut_busra_coding_assignment12 zumrut_busra_coding_assignment12
-```
-
-> **Purpose:** Serves the **component library** inside a **Docker container**.
-
----
-
-## Example Components
-
-### 1️⃣ Button Component
-
-#### Files Created
-
-- **Button.tsx** - The button component.
-- **Button.stories.tsx** - Storybook setup.
-- **Button.test.tsx** - Jest tests.
-- **Button.types.tsx** - TypeScript types.
-
-#### Button.tsx
-
-```tsx
-import React from "react";
-import styled from "styled-components";
-
-interface ButtonProps {
-  disabled?: boolean;
-}
-
-const StyledButton = styled.button<ButtonProps>`
-  background-color: blue;
-  color: white;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-`;
-
-const Button: React.FC<ButtonProps> = ({ disabled, children }) => {
-  return <StyledButton disabled={disabled}>{children}</StyledButton>;
-};
-
-export default Button;
-```
-
-#### Button.test.tsx
-
-```tsx
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import Button from "./Button";
-import "@testing-library/jest-dom";
-
-describe("Button Component", () => {
-  test("renders the button with the correct label", () => {
-    render(<Button>Test Button</Button>);
-    expect(screen.getByText("Test Button")).toBeInTheDocument();
-  });
-
-  test("button is disabled when the disabled prop is true", () => {
-    render(<Button disabled>Disabled Button</Button>);
-    expect(screen.getByText("Disabled Button")).toBeDisabled();
-  });
-
-  test("button has the correct styles when disabled", () => {
-    render(<Button disabled>Disabled Button</Button>);
-    const button = screen.getByText("Disabled Button");
-    expect(button).toHaveStyle("cursor: not-allowed");
-    expect(button).toHaveStyle("opacity: 0.6");
-  });
-});
-```
-
----
-
-## GitHub Deployment
-
-### Steps
-
-1. **Create a new GitHub repository**.
-2. **Push your code**:
-   ```sh
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_GITHUB_USERNAME/react-component-library.git
-   git push -u origin main
-   ```
-
----
