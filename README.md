@@ -21,7 +21,7 @@ This project is part of **Assignment 13** for the **UI Component Library** cours
 ### Clone the Repository & Install Dependencies
 
 ```sh
-git clone https://github.com/bgiranzumrut/UI-Component-Library_Assignment-13.git
+git clone https://github.com/rdogra-y/testiing_assignment.git
 cd UI-Component-Library_Assignment-13
 npm install
 ```
@@ -77,7 +77,7 @@ npm test
 FROM node:18-alpine
 
 # Set the working directory
-WORKDIR /zumrut_busra_ui_garden_build_checks
+WORKDIR /dogra_rakshita_ui_garden_build_checks
 
 # Copy package.json and package-lock.json
 COPY package.json package-lock.json ./
@@ -104,8 +104,8 @@ CMD ["npx", "http-server", "storybook-static", "-p", "8018", "--cors", "--no-cac
 ### Build & Run the Docker Container - Storybook loads at http://localhost:8018
 
 ```sh
-docker build -t zumrut_busra_coding_assignment13 .
-docker run -d -p 8018:8018 --name zumrut_busra_coding_assignment13 zumrut_busra_coding_assignment13
+docker build -t dogra_coding_assignment13 .
+docker run -d -p 8018:8018 --name dogra_coding_assignment13 dogra_coding_assignment13
 
 ```
 

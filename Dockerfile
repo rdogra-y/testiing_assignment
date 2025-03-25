@@ -2,7 +2,7 @@
 FROM node:18-alpine
 
 # Set the working directory
-WORKDIR /zumrut_busra_ui_garden_build_checks
+WORKDIR /dogra_rakshita_ui_garden_build_checks
 
 # Copy package.json and package-lock.json first
 COPY package.json package-lock.json ./
